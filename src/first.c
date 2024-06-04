@@ -4,8 +4,11 @@
 
 PjtBall pjtBall;    //来个球
 
+
 void m_init()
 {
+
+
     //初始坐标
     pjtBall.posX = 600;
     pjtBall.posY = 400;

@@ -2,7 +2,6 @@
 #ifndef PJTBALL_H
 #define PJTBALL_H
 
-
 typedef struct PjtBall
 {
     float posX;
@@ -14,9 +13,7 @@ typedef struct PjtBall
     float speedDown;
     float speedLeft;
     float speedRight;
-
 }PjtBall;
-
 
 
 
