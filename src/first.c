@@ -2,70 +2,86 @@
 #include "../include/raylib.h"
 #include "pjtball.h"
 
-PjtBall pjtBall;    //来个球
+PjtBall m_ball;    //一个球
+int rndi_color;    //小球颜色的随机数
+Color rnd_color[7] = {RED,BLUE,BLACK,GREEN,YELLOW,GOLD,SKYBLUE};    //小球随机颜色组
+Color m_color = RED;
 
-
-void m_init()
+void Init()
 {
-
-
     //初始坐标
-    pjtBall.posX = 600;
-    pjtBall.posY = 400;
-    pjtBall.speedBase = 200;    //小球速度
+    m_ball.posX = 600;
+    m_ball.posY = 400;
+    m_ball.speedBase = 200;    //小球速度
     //初始化窗口
     InitWindow(1200,800,"哈哈哈");
 }
 
-void m_dologic()
+void Imput_changeColor()
+{
+    //按键导致颜色随机值改变
+    if(IsKeyPressed(KEY_W) || IsKeyPressed(KEY_S) || IsKeyPressed(KEY_A) || IsKeyPressed(KEY_D))
+    {
+        rndi_color = GetRandomValue(1,10);
+        //printf("%d",rndi_color);
+        m_color = rnd_color[GetRandomValue(0,6)];
+    };
+    
+
+}
+
+void Dologic()
 {
     float m_delta = GetFrameTime();
     
     //键盘输入调整速度值
     if (IsKeyDown(KEY_W)){
-        pjtBall.speedUp = 1;
+        m_ball.speedUp = 1;
     }else
     {
-        pjtBall.speedUp = 0;
+        m_ball.speedUp = 0;
     };
 
     if(IsKeyDown(KEY_S))
     {
-        pjtBall.speedDown = 1;
+        m_ball.speedDown = 1;
     }else
     {
-        pjtBall.speedDown = 0;
+        m_ball.speedDown = 0;
     };
 
     if(IsKeyDown(KEY_A))
     {
-        pjtBall.speedLeft = 1;
+        m_ball.speedLeft = 1;
     }else
     {
-        pjtBall.speedLeft = 0;
+        m_ball.speedLeft = 0;
     };
 
     if(IsKeyDown(KEY_D))
     {
-        pjtBall.speedRight = 1;
+        m_ball.speedRight = 1;
     }else
     {
-        pjtBall.speedRight = 0;
+        m_ball.speedRight = 0;
     };
 
     //赋值给小球速度
-    pjtBall.speedY = pjtBall.speedDown - pjtBall.speedUp;
-    pjtBall.speedX = pjtBall.speedRight - pjtBall.speedLeft;
-    pjtBall.posX += m_delta * pjtBall.speedBase * pjtBall.speedX;
-    pjtBall.posY += m_delta * pjtBall.speedBase * pjtBall.speedY;
+    m_ball.speedY = m_ball.speedDown - m_ball.speedUp;
+    m_ball.speedX = m_ball.speedRight - m_ball.speedLeft;
+    m_ball.posX += m_delta * m_ball.speedBase * m_ball.speedX;
+    m_ball.posY += m_delta * m_ball.speedBase * m_ball.speedY;
+
+    //按键输入时随机变化颜色
+    Imput_changeColor();
     
 }
 
-void m_performance()
+void Performance()
 {
     BeginDrawing();
         ClearBackground(RAYWHITE);
-        DrawCircle(pjtBall.posX,pjtBall.posY,44,RED);
+        DrawCircle(m_ball.posX,m_ball.posY,44,m_color);
     EndDrawing();
 }
 
@@ -73,13 +89,13 @@ int main()
 {
     
     //初始化
-    m_init();
+    Init();
 
     //主循环
     while (!WindowShouldClose())
     {
-        m_dologic();
-        m_performance();
+        Dologic();
+        Performance();
         
     }
     
