@@ -1,6 +1,7 @@
-//pjtball.h
 #ifndef PJTBALL_H
 #define PJTBALL_H
+
+#include "../include/raylib.h"
 
 typedef struct PjtBall  //被控制的球体类型
 {
@@ -13,8 +14,10 @@ typedef struct PjtBall  //被控制的球体类型
     float speedDown;//下速度，用于和上速度合并成y速度
     float speedLeft;//左速度，用于和右速度合并成x速度
     float speedRight;//右速度，用于和左速度合并成x速度
+    Color color;
+
 }PjtBall;   
 
 
 
-#endif  //PJTBALL_H
+#endif

@@ -1,7 +1,9 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "mylib.h": "c"
+        "mylib.h": "c",
+        "*.a": "c",
+        "pjtball.h": "c"
     },
     "C_Cpp.default.intelliSenseMode": ""
 }
