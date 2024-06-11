@@ -75,7 +75,7 @@ void Dologic(PjtBall *p_ball,PjtBall p_balls[],int *p_ballNum)
     //按键输入时随机变化颜色
     Imput_changeColor(p_ball);
     //鼠标点击时在数组中创建小球
-    //CreateBallByClick(p_balls[0],*p_ballNum);
+    //CreateBallByClick(p_balls,*p_ballNum);
     if (IsMouseButtonPressed(0))
     {
         Vector2 m_pos = GetMousePosition();
